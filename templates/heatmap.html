@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Output</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="logo">
+    <div class="container-h">
+        <h1>Output:</h1>
+        <div class="heatmap-container">
+            <img src="{{ download_url }}" alt="Heatmap" class="heatmap">
+        </div>
+        <div class="button-container">
+            <a href="{{ url_for('index') }}">
+                <button class="download-button">Zurück</button>
+            </a>
+            <a href="{{ download_url }}" download="heatmap.png">
+                <button class="download-button">Download</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

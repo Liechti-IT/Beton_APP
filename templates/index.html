@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profometer Daten Auswertung</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <img src="{{ url_for('static', filename='logo.svg') }}" alt="Logo" class="logo">
+    <div class="container">
+        <h1 class="margin_bottom">Profometer Auswertung</h1>
+        <form action="{{ url_for('generate_heatmap') }}" method="post" enctype="multipart/form-data">
+            <label for="filename">Datei auswählen:</label>
+            <input type="file" id="filename" name="filename" required>
+            <br>
+            <button type="button" id="show-options-button" class="show-options">Optionen anzeigen</button>
+            <br>
+            <div class="advanced-options">
+                <label for="delimiter">Trennzeichen:</label>
+                <select name="delimiter" id="delimiter" required>
+                    <option value="tab">Tab</option>
+                    <option value="semicolon">Semikolon</option>
+                </select>
+                <br>
+                <label for="decimal_separator">Dezimaltrennzeichen:</label>
+                <select name="decimal_separator" id="decimal_separator" required>
+                  <option value="dot">Punkt</option>
+                  <option value="comma">Komma</option>
+                </select>
+                <br>
+                <label for="encoding">Kodierung:</label>
+                <select name="encoding" id="encoding" required>
+                  <option value="utf-16">UTF-16</option>
+                  <option value="utf-8">UTF-8</option>
+                  <option value="ANSI">ANSI</option>
+                </select>
+                <br>
+                <label for="cmap_dropdown">Farbskala:</label>
+                <select class="cmap_drop_margin" id="cmap_dropdown" name="cmap_dropdown">
+                    <option value="custom_cmap">suicorr</option>
+                    <option value="viridis">viridis</option>
+                    <option value="plasma">plasma</option>
+                    <option value="inferno">inferno</option>
+                    <option value="magma">magma</option>
+                    <option value="cividis">cividis</option>
+                </select>
+                <br>
+                <div class="interpolation-field">
+                    <label for="interpolation">Interpolation:</label>
+                    <input class="checkmark" type="checkbox" id="interpolation" name="interpolation" checked>
+                </div>
+                <label for="interpolation_dropdown">Interpolations Typ:</label>
+                <select class="margin_bottom_20 cmap_drop_margin" id="interpolation_dropdown" name="interpolation_dropdown">
+                    <option value="bilinear">bilinear</option>
+                    <option value="nearest">nearest</option>
+                    <option value="bicubic">bicubic</option>
+                    <option value="spline16">spline16</option>
+                    <option value="spline36">spline36</option>
+                    <option value="hanning">hanning</option>
+                    <option value="hamming">hamming</option>
+                    <option value="hermite">hermite</option>
+                    <option value="kaiser">kaiser</option>
+                    <option value="quadric">quadric</option>
+                    <option value="catrom">catrom</option>
+                    <option value="gaussian">gaussian</option>
+                    <option value="bessel">bessel</option>
+                    <option value="mitchell">mitchell</option>
+                    <option value="sinc">sinc</option>
+                    <option value="lanczos">lanczos</option>
+                    <option value="none">none</option>
+                </select>
+                <br>
+                <label for="color-field">Farbauswahl:</label>
+
+                <div class="color-field">
+                    <input class="spacing" value="0" type="number" name="step1" id="step1" required>
+                    <input class="colorpicker" type="color" id="color1" name="color1" value="#D14C4C">
+                </div>
+                
+                <div class="color-field">
+                    <input class="spacing" value="15" type="number" name="step2" id="step2" required>
+                    <input class="colorpicker" type="color" id="color2" name="color2" value="#FED14C">
+                </div>
+                
+                <div class="color-field">
+                    <input class="spacing" value="30" type="number" name="step3" id="step3" required>
+                    <input class="colorpicker" type="color" id="color3" name="color3" value="#FEFE4C">
+                </div>
+                
+                <div class="color-field">
+                    <input class="spacing" value="45" type="number" name="step4" id="step4" required>
+                    <input class="colorpicker" type="color" id="color4" name="color4" value="#818F67">
+                </div>
+                
+                <div class="color-field">
+                    <input class="spacing" value="60" type="number" name="step5" id="step5" required>
+                    <input class="colorpicker" type="color" id="color5" name="color5" value="#4CC583">
+                </div>
+                
+                <div class="color-field">
+                    <input class="spacing" value="75" type="number" name="step6" id="step6" required>
+                    <input class="colorpicker" type="color" id="color6" name="color6" value="#4C9BD5">
+                </div>
+                <br>
+
+                <label for="avg_spacing">Durchschnittlicher Abstand der Messwerte:</label>
+                <div class="avg_spacing_text">
+                    <input class="spacing" value="0.05" type="text" name="avg_spacing" id="avg_spacing" required>
+                </div>
+                
+
+            </div>
+            <br>
+            <button class="bottom_button" type="submit">Auswertung erstellen</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('show-options-button').addEventListener('click', function() {
+            var advancedOptions = document.querySelector('.advanced-options');
+            var buttonText = document.getElementById('show-options-button');
+            if (advancedOptions.style.display === 'block') {
+                advancedOptions.style.display = 'none';
+                buttonText.textContent = 'Optionen anzeigen';
+            } else {
+                advancedOptions.style.display = 'block';
+                buttonText.textContent = 'Optionen ausblenden';
+            }
+        });
+    </script>
+</body>
+</html>
