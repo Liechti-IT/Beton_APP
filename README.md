@@ -1,6 +1,6 @@
 # Profometer Heatmap App
 
-![Profometer Heatmap App](screenshot.png)
+<img src="https://liechti-it.ch/img/profo_img01.png" width="400">
 
 Die Profometer Heatmap App ist eine Anwendung, die entwickelt wurde, um Heatmaps der Betonüberdeckung von Eisen in Stahlbeton darzustellen. Heatmaps sind eine leistungsstarke visuelle Methode, um große Mengen von Profometer-Daten zu analysieren und Muster in der Betonüberdeckung auf einen Blick zu erkennen.
 
